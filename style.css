@@ -1,0 +1,703 @@
+/* =============================================
+   CSS RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white: #ffffff;
+  --bg: #f6f7f8;
+  --teal: #01f0d0;
+  --teal-light: #e0faf6;
+  --purple-systolic: #e66fd2;
+  --purple-diastolic: #8c6fe6;
+  --text-dark: #072635;
+  --text-mid: #707070;
+  --text-light: #a0a0a0;
+  --border: #ededed;
+  --active-bg: #d8fcf7;
+  --sidebar-width: 280px;
+  --profile-width: 300px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html, body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* =============================================
+   TOP NAV
+   ============================================= */
+.topnav {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  padding: 0 32px;
+  height: 72px;
+  gap: 32px;
+  border-radius: 70px;
+  margin: 16px 16px 0;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+}
+
+.topnav__logo img {
+  height: 40px;
+  display: block;
+}
+
+.topnav__menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.nav-item img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+.nav-item:hover {
+  background: var(--bg);
+}
+
+.nav-item.active {
+  background: var(--teal);
+  color: var(--text-dark);
+}
+
+.nav-item.active img {
+  opacity: 1;
+}
+
+.topnav__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.doctor-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.doctor-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.doctor-role {
+  font-size: 12px;
+  color: var(--text-mid);
+}
+
+.topnav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 1px solid var(--border);
+  padding-left: 12px;
+  margin-left: 4px;
+}
+
+.topnav__actions img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.topnav__actions img:hover {
+  opacity: 1;
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr var(--profile-width);
+  gap: 16px;
+  padding: 16px;
+  min-height: calc(100vh - 104px);
+  align-items: start;
+}
+
+/* =============================================
+   SIDEBAR
+   ============================================= */
+.sidebar {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+}
+
+.sidebar__header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--bg);
+}
+
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.patient-list {
+  list-style: none;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+}
+
+.patient-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid transparent;
+}
+
+.patient-item:hover {
+  background: var(--bg);
+}
+
+.patient-item.active {
+  background: var(--active-bg);
+}
+
+.patient-item img.patient-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.patient-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-info .name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.patient-info .meta {
+  font-size: 13px;
+  color: var(--text-mid);
+}
+
+.patient-more {
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.patient-more img {
+  width: 16px;
+  height: 16px;
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =============================================
+   DIAGNOSIS HISTORY / BLOOD PRESSURE
+   ============================================= */
+.diagnosis-history {
+  background: #f4f0fe;
+}
+
+.bp-section {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.bp-chart-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.bp-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.chart-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-dark);
+}
+
+.chart-period {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-mid);
+  cursor: pointer;
+}
+
+.chart-period img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+}
+
+#bpChart {
+  width: 100% !important;
+  height: 220px !important;
+}
+
+.bp-legend {
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 8px;
+}
+
+.bp-legend hr {
+  border: none;
+  border-top: 1px solid #e0d8f0;
+  margin: 16px 0;
+}
+
+.bp-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+.legend-dot.systolic {
+  background: var(--purple-systolic);
+}
+
+.legend-dot.diastolic {
+  background: var(--purple-diastolic);
+}
+
+.bp-label {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.bp-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.bp-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-mid);
+}
+
+.bp-trend img {
+  width: 14px;
+  height: 14px;
+}
+
+/* =============================================
+   VITALS CARDS
+   ============================================= */
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.vital-card {
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vital-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.card--blue {
+  background: #e8f5fb;
+}
+
+.card--pink {
+  background: #ffe6f1;
+}
+
+.card--red {
+  background: #ffe1e0;
+}
+
+.vital-label {
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.vital-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.vital-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text-mid);
+}
+
+.vital-status img {
+  width: 14px !important;
+  height: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+/* =============================================
+   DIAGNOSTIC LIST
+   ============================================= */
+.diagnostic-list {
+  overflow: hidden;
+}
+
+.diagnostic-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diagnostic-list th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: #f6f7f8;
+  padding: 12px 16px;
+}
+
+.diagnostic-list th:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.diagnostic-list th:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.diagnostic-list td {
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.diagnostic-list tr:last-child td {
+  border-bottom: none;
+}
+
+.diagnostic-list td:first-child {
+  font-weight: 600;
+  width: 30%;
+}
+
+.diagnostic-list td:nth-child(2) {
+  color: var(--text-mid);
+  width: 50%;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg);
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+/* =============================================
+   PROFILE PANEL
+   ============================================= */
+.profile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 16px;
+  display: block;
+  background: var(--bg);
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.profile-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.profile-detail-row img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.profile-detail-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: var(--text-mid);
+  display: block;
+}
+
+.detail-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: block;
+}
+
+.btn-show-all {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--teal);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-show-all:hover {
+  opacity: 0.85;
+}
+
+/* =============================================
+   LAB RESULTS
+   ============================================= */
+.lab-results h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.lab-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lab-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.lab-item:hover {
+  background: var(--bg);
+}
+
+.lab-item span {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.lab-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.lab-item button:hover {
+  opacity: 1;
+}
+
+.lab-item button img {
+  width: 18px;
+  height: 18px;
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* =============================================
+   LOADING STATE
+   ============================================= */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
